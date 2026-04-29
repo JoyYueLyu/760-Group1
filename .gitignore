@@ -1,0 +1,59 @@
+# =========================
+# Python cache files
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+# =========================
+# Virtual environments
+# =========================
+.venv/
+venv/
+env/
+ENV/
+
+
+# =========================
+# Jupyter Notebook checkpoints
+# =========================
+.ipynb_checkpoints/
+
+
+
+# =========================
+# Trained PyTorch model weights
+# These files are usually large
+# =========================
+*.pth
+*.pt
+*.ckpt
+
+
+# =========================
+# Temporary training logs
+# =========================
+runs/
+logs/
+wandb/
+
+
+# =========================
+# System files
+# =========================
+.DS_Store
+Thumbs.db
+
+
+# =========================
+# IDE / editor files
+# =========================
+.vscode/
+.idea/
+
+
+# =========================
+# Environment variables
+# =========================
+.env
