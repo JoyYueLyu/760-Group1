@@ -1,0 +1,2 @@
+model,loss,optimizer,learning_rate,best_val_loss,best_val_acc,epochs_trained,training_time_seconds
+BaselineCNN,CrossEntropyLoss,Adam,0.001,1.2069788044446135,0.5342465753424658,20,886.3167676925659
