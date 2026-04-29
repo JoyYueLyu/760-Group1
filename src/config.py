@@ -15,6 +15,8 @@ DATA_DIR = (
 
 # Processed data path
 PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
+# split
+SPLIT_CSV = PROCESSED_DIR / "splits.csv"
 
 # Output paths
 OUTPUT_DIR = PROJECT_ROOT / "outputs"
