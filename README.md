@@ -41,19 +41,19 @@ Please download the Digital Knee X-ray Images dataset and place the MedicalExper
 ### 5.Check and clean dataset
 ```angular2html
 python src/check_dataset.py
+```
+find double knee:  
+python src/find_double_knee_candidates.py  
+This generates:  
+outputs/results/double_knee_candidates.csv  
+outputs/figures/double_knee_candidates_page_1.png  
 
-find double knee:
-python src/find_double_knee_candidates.py
-This generates:
-outputs/results/double_knee_candidates.csv
-outputs/figures/double_knee_candidates_page_1.png
+Open the generated candidate images and manually check whether they contain both knees.  
+In outputs/results/double_knee_candidates.csv, mark the images to remove by writing yes in the remove column.  
 
-Open the generated candidate images and manually check whether they contain both knees.
-In outputs/results/double_knee_candidates.csv, mark the images to remove by writing yes in the remove column.
-
-Then move the confirmed double-knee images out of the training dataset:
+Then move the confirmed double-knee images out of the training dataset:  
+```angular2html
 python src/remove_double_knee_images.py
-
 python src/check_dataset.py
 ```
 
@@ -104,4 +104,33 @@ outputs/figures/baseline_confusion_matrix.png
 ### View notebook analysis
 ```angular2html
 notebooks/01_project_progress_baseline_analysis.ipynb
+```
+
+### 11. Train ResNet18 transfer learning model
+```angular2html
+python src/transfer_models/train_resnet18.py
+
+This generates:
+
+outputs/models/resnet18_best.pth
+outputs/results/resnet18_training_history.csv
+outputs/results/resnet18_training_summary.csv
+outputs/figures/resnet18_loss_curve.png
+outputs/figures/resnet18_accuracy_curve.png
+```
+
+### 12.Evaluate ResNet18 transfer learning model
+```angular2html
+python src/transfer_models/evaluate_resnet18.py
+
+This generates:
+outputs/results/resnet18_test_metrics.csv
+outputs/results/resnet18_per_class_metrics.csv
+outputs/results/resnet18_test_predictions.csv
+outputs/results/resnet18_confusion_matrix.csv
+outputs/figures/resnet18_confusion_matrix.png
+```
+### notebook
+```angular2html
+notebooks/02_resnet18_transfer_learning_analysis.ipynb
 ```
