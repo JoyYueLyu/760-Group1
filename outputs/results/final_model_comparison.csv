@@ -1,0 +1,5 @@
+Experiment,Accuracy,Macro F1,Weighted F1,MAE,QWK,Adjacent Error Rate,Distant Error Rate
+Baseline CNN + Standard CE,0.4592,0.3733,0.4188,1.0204,0.5057,0.5094,0.4906
+ResNet18 + Standard CE,0.7177,0.701,0.714,0.3912,0.8175,0.747,0.253
+ResNet18 + Class-weighted CE,0.6837,0.6854,0.6919,0.4558,0.7921,0.6452,0.3548
+ResNet18 + Ordinal-aware Loss,0.7109,0.7036,0.7117,0.3878,0.8246,0.7529,0.2471

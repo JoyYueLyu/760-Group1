@@ -134,3 +134,19 @@ outputs/figures/resnet18_confusion_matrix.png
 ```angular2html
 notebooks/02_resnet18_transfer_learning_analysis.ipynb
 ```
+###  13. Train ResNet18 with class-weighted loss
+```angular2html
+python src/transfer_models/train_resnet18_classweighted.py
+```
+### 14. Evaluate ResNet18 with class-weighted loss
+```angular2html
+python src/transfer_models/evaluate_resnet18_classweighted.py
+```
+### 15. Train ResNet18 with ordinal-aware weighted loss
+```angular2html
+python src/transfer_models/train_resnet18_ordinal.py
+```
+### 16. Evaluate ResNet18 with ordinal-aware weighted loss
+```angular2html
+python src/transfer_models/evaluate_resnet18_ordinal.py
+```
