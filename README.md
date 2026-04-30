@@ -24,6 +24,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 ### 4 Download the dataset
+https://data.mendeley.com/datasets/t9ndx37v5h/1  
 Please download the Digital Knee X-ray Images dataset and place the MedicalExpert-I folder in the following structure:
 ```angular2html
 760-Group1/
