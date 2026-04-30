@@ -27,6 +27,8 @@ ENV/
 # =========================
 data/raw/
 data/excluded/
+data/processed/splits.csv
+
 
 
 # =========================
