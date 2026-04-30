@@ -21,11 +21,19 @@ ENV/
 .ipynb_checkpoints/
 
 
+# =========================
+# Raw dataset
+# Do not upload the original medical image dataset to GitHub
+# =========================
+data/raw/
+data/excluded/
+
 
 # =========================
 # Trained PyTorch model weights
 # These files are usually large
 # =========================
+outputs/models/
 *.pth
 *.pt
 *.ckpt
@@ -57,5 +65,3 @@ Thumbs.db
 # Environment variables
 # =========================
 .env
-
-
