@@ -150,3 +150,17 @@ python src/transfer_models/train_resnet18_ordinal.py
 ```angular2html
 python src/transfer_models/evaluate_resnet18_ordinal.py
 ```
+### 17.grad-CAM
+ResNet18  
+```angular2html
+python src/interpretability/generate_gradcam_resnet18.py --variant standard --samples-per-class 1
+```
+class-weighted ResNet18  
+```angular2html
+python src/interpretability/generate_gradcam_resnet18.py --variant classweighted --samples-per-class 1
+
+```
+ordinal-aware ResNet18  
+```angular2html
+python src/interpretability/generate_gradcam_resnet18.py --variant ordinal --samples-per-class 1
+```
