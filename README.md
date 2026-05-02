@@ -164,3 +164,63 @@ ordinal-aware ResNet18
 ```angular2html
 python src/interpretability/generate_gradcam_resnet18.py --variant ordinal --samples-per-class 1
 ```
+
+### 18. Train DenseNet121 transfer learning model
+```angular2html
+python -m src.transfer_models_DenseNet.train_densenet121
+
+This generates:
+
+outputs/models/densenet121_best.pth
+outputs/results/densenet121_training_history.csv
+outputs/results/densenet121_training_summary.csv
+outputs/figures/densenet121_loss_curve.png
+outputs/figures/densenet121_accuracy_curve.png
+```
+
+### 19. Evaluate DenseNet121 transfer learning model
+```angular2html
+python -m src.transfer_models_DenseNet.evaluate_densenet121
+
+This generates:
+
+outputs/results/densenet121_test_metrics.csv
+outputs/results/densenet121_per_class_metrics.csv
+outputs/results/densenet121_test_predictions.csv
+outputs/results/densenet121_confusion_matrix.csv
+outputs/figures/densenet121_confusion_matrix.png
+```
+
+### 20. Train DenseNet121 with class-weighted loss
+```angular2html
+python -m src.transfer_models_DenseNet.train_densenet121_classweighted
+```
+
+### 21. Evaluate DenseNet121 with class-weighted loss
+```angular2html
+python -m src.transfer_models_DenseNet.evaluate_densenet121_classweighted
+```
+
+### 22. Train DenseNet121 with ordinal-aware weighted loss
+```angular2html
+python -m src.transfer_models_DenseNet.train_densenet121_ordinal
+```
+
+### 23. Evaluate DenseNet121 with ordinal-aware weighted loss
+```angular2html
+python -m src.transfer_models_DenseNet.evaluate_densenet121_ordinal
+```
+
+### 24. grad-CAM
+DenseNet121
+```angular2html
+python -m src.interpretability.generate_gradcam_densenet121 --variant standard --samples-per-class 1
+```
+class-weighted DenseNet121
+```angular2html
+python -m src.interpretability.generate_gradcam_densenet121 --variant classweighted --samples-per-class 1
+```
+ordinal-aware DenseNet121 
+```angular2html
+python -m src.interpretability.generate_gradcam_densenet121 --variant ordinal --samples-per-class 1
+```
