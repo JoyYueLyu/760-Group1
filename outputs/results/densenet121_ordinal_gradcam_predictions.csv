@@ -1,0 +1,6 @@
+variant,image_path,true_label,true_class,pred_label,pred_class,confidence,correct,error_distance
+ordinal,Z:\cs760-group1\data\raw\Digital Knee X-ray Images\MedicalExpert-I\0Normal\NormalG0 (178).png,0,Normal,0,Normal,0.46634986996650696,True,0
+ordinal,Z:\cs760-group1\data\raw\Digital Knee X-ray Images\MedicalExpert-I\1Doubtful\DoubtfulG1 (234).png,1,Doubtful,1,Doubtful,0.8947974443435669,True,0
+ordinal,Z:\cs760-group1\data\raw\Digital Knee X-ray Images\MedicalExpert-I\2Mild\MildG2 (154).png,2,Mild,3,Moderate,0.9680073261260986,False,1
+ordinal,Z:\cs760-group1\data\raw\Digital Knee X-ray Images\MedicalExpert-I\3Moderate\ModerateG3 (200).png,3,Moderate,3,Moderate,0.9606636166572571,True,0
+ordinal,Z:\cs760-group1\data\raw\Digital Knee X-ray Images\MedicalExpert-I\4Severe\SevereG4 (60).png,4,Severe,4,Severe,0.857768177986145,True,0
