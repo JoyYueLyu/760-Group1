@@ -1,2 +1,2 @@
 model,loss,accuracy,macro_f1,weighted_f1,mae,qwk,total_errors,adjacent_errors,distant_errors,adjacent_error_rate_among_errors,distant_error_rate_among_errors
-densenet121_classweighted,Class-weighted CrossEntropyLoss,0.7848484848484848,0.7704036373524221,0.7833426175730632,0.2878787878787879,0.8764811062105138,71,54,17,0.7605633802816901,0.23943661971830985
+densenet121_classweighted,Class-weighted CrossEntropyLoss,0.7448979591836735,0.7395570010003001,0.7432974839665352,0.3299319727891156,0.8704707948692171,75,57,18,0.76,0.24

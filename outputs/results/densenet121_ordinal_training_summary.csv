@@ -1,2 +1,2 @@
 model,loss,optimizer,learning_rate,pretrained,fine_tune_last_block,alpha,best_val_loss,best_val_acc,epochs_trained,training_time_seconds
-densenet121_ordinal,Ordinal-aware weighted loss,Adam,0.0001,True,True,1.0,0.6256165253393577,0.806060606060606,20,922.6711118221283
+densenet121_ordinal,Ordinal-aware weighted loss,Adam,0.0001,True,True,1.0,0.7189590441037531,0.7808219178082192,15,594.1111514568329

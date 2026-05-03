@@ -1,2 +1,2 @@
 model,loss,optimizer,learning_rate,pretrained,fine_tune_last_block,best_val_loss,best_val_acc,epochs_trained,training_time_seconds
-densenet121_classweighted,Class-weighted CrossEntropyLoss,Adam,0.0001,True,True,0.5154671353824211,0.806060606060606,17,1001.0515713691711
+densenet121_classweighted,Class-weighted CrossEntropyLoss,Adam,0.0001,True,True,0.5726448762906741,0.7602739726027398,15,581.1332535743713

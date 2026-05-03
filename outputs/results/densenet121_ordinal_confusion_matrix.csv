@@ -1,6 +1,6 @@
 ,pred_Normal,pred_Doubtful,pred_Mild,pred_Moderate,pred_Severe
-true_Normal,81,17,3,2,0
-true_Doubtful,7,75,9,2,2
-true_Mild,3,12,23,6,3
-true_Moderate,0,1,5,38,0
-true_Severe,0,4,1,3,33
+true_Normal,76,9,6,0,0
+true_Doubtful,20,59,8,1,0
+true_Mild,2,7,23,4,2
+true_Moderate,0,1,2,30,2
+true_Severe,0,4,3,4,31
