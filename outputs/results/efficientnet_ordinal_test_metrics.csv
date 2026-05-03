@@ -1,0 +1,2 @@
+model,loss,accuracy,macro_f1,weighted_f1,mae,qwk,total_errors,adjacent_errors,distant_errors,adjacent_error_rate_among_errors,distant_error_rate_among_errors
+efficientnet_ordinal,Ordinal-aware weighted loss,0.593939393939394,0.55257801765104,0.5803175130389001,0.6545454545454545,0.6870042319715883,134,82,52,0.6119402985074627,0.3880597014925373

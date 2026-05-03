@@ -1,0 +1,6 @@
+variant,image_path,true_label,true_class,pred_label,pred_class,confidence,correct,error_distance
+ordinal,/Users/sharonzhang/PycharmProjects/760-Group1/data/raw/Digital Knee X-ray Images/MedicalExpert-I/0Normal/NormalG0 (50).png,0,Normal,0,Normal,0.472744345664978,True,0
+ordinal,/Users/sharonzhang/PycharmProjects/760-Group1/data/raw/Digital Knee X-ray Images/MedicalExpert-I/1Doubtful/DoubtfulG1 (194).png,1,Doubtful,0,Normal,0.5529606342315674,False,1
+ordinal,/Users/sharonzhang/PycharmProjects/760-Group1/data/raw/Digital Knee X-ray Images/MedicalExpert-I/2Mild/MildG2 (81).png,2,Mild,4,Severe,0.29291194677352905,False,2
+ordinal,/Users/sharonzhang/PycharmProjects/760-Group1/data/raw/Digital Knee X-ray Images/MedicalExpert-I/3Moderate/ModerateG3 (90).png,3,Moderate,3,Moderate,0.5126729607582092,True,0
+ordinal,/Users/sharonzhang/PycharmProjects/760-Group1/data/raw/Digital Knee X-ray Images/MedicalExpert-I/4Severe/SevereG4 (163).png,4,Severe,3,Moderate,0.5406262278556824,False,1
