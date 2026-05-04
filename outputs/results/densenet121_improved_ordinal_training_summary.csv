@@ -1,0 +1,2 @@
+model,backbone,loss_type,ordinal_alpha,stage_1_epochs,stage_2_max_epochs,stage_1_learning_rate,stage_2_learning_rate,optimizer,scheduler,scheduler_factor,scheduler_patience,early_stopping_patience,best_val_loss,best_val_acc,epochs_trained
+densenet121_improved_ordinal,DenseNet121,ordinal,1.0,3,20,0.0005,0.0001,Adam,ReduceLROnPlateau,0.5,2,5,0.7607451015955782,0.7328767123287672,16

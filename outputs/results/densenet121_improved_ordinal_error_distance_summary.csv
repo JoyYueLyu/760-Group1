@@ -1,0 +1,2 @@
+total_samples,total_errors,adjacent_errors,distant_errors,adjacent_error_rate_among_errors,distant_error_rate_among_errors
+294,84,64,20,0.7619047619047619,0.23809523809523808

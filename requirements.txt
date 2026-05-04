@@ -7,3 +7,4 @@ torch
 torchvision
 jupyter
 notebook
+opencv-python
