@@ -1,0 +1,11 @@
+rank,model_variant,loss,accuracy,macro_f1,weighted_f1,mae,qwk,total_errors,source_file
+1,DenseNet121,CrossEntropyLoss,75.85,74.664,75.392,0.32,87.202,71,densenet121_test_metrics.csv
+2,DenseNet121 (class-weighted),Class-weighted CrossEntropyLoss,74.49,73.956,74.33,0.33,87.047,75,densenet121_classweighted_test_metrics.csv
+3,DenseNet121 (ordinal),Ordinal-aware weighted loss,74.49,73.952,74.504,0.333,86.602,75,densenet121_ordinal_test_metrics.csv
+4,ResNet18 (ordinal),Ordinal-aware weighted loss,71.088,70.359,71.174,0.388,82.459,85,resnet18_ordinal_test_metrics.csv
+5,ResNet18,CrossEntropyLoss,71.769,70.101,71.405,0.391,81.755,83,resnet18_test_metrics.csv
+6,ResNet18 (class-weighted),Class-weighted CrossEntropyLoss,68.367,68.537,69.194,0.456,79.205,93,resnet18_classweighted_test_metrics.csv
+7,EfficientNet (ordinal),Ordinal-aware weighted loss,67.273,65.315,66.705,0.506,75.647,108,efficientnet_ordinal_test_metrics.csv
+8,EfficientNet (class-weighted),Class-weighted CrossEntropyLoss,67.273,64.621,66.204,0.524,74.681,108,efficientnet_classweighted_test_metrics.csv
+9,EfficientNet,CrossEntropyLoss,66.061,60.052,63.166,0.548,73.107,112,efficientnet_test_metrics.csv
+10,Baseline CNN,CrossEntropyLoss,45.918,37.335,41.876,1.02,50.567,159,baseline_test_metrics.csv

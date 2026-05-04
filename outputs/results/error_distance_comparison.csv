@@ -1,5 +1,11 @@
 Experiment,Adjacent Error Rate,Distant Error Rate
-Baseline CNN + Standard CE,0.5094,0.4906
-ResNet18 + Standard CE,0.747,0.253
-ResNet18 + Class-weighted CE,0.6452,0.3548
-ResNet18 + Ordinal-aware Loss,0.7529,0.2471
+Baseline CNN,0.5094,0.4906
+ResNet18,0.747,0.253
+ResNet18 (class-weighted),0.6452,0.3548
+ResNet18 (ordinal),0.7529,0.2471
+DenseNet121,0.7465,0.2535
+DenseNet121 (class-weighted),0.76,0.24
+DenseNet121 (ordinal),0.7467,0.2533
+EfficientNet,0.6071,0.3929
+EfficientNet (class-weighted),0.6204,0.3796
+EfficientNet (ordinal),0.6667,0.3333
