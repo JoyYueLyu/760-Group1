@@ -1,2 +1,0 @@
-model,loss,accuracy,macro_f1,weighted_f1,mae,qwk,total_errors,adjacent_errors,distant_errors,adjacent_error_rate_among_errors,distant_error_rate_among_errors
-densenet121_improved_ordinal,ordinal,0.7142857142857143,0.7120415864327932,0.7144219380246174,0.3741496598639456,0.8472271166193819,84,64,20,0.7619047619047619,0.23809523809523808

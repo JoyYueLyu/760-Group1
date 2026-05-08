@@ -1,3 +1,0 @@
-Experiment,Accuracy,Macro F1,Weighted F1,MAE,QWK,Total Errors,Adjacent Errors,Distant Errors,Adjacent Error Rate,Distant Error Rate
-ResNet18 + Ordinal Loss,0.7109,0.7036,0.7117,0.3878,0.8246,85,64,21,0.7529,0.2471
-Improved DenseNet121 + Ordinal Loss,0.7143,0.712,0.7144,0.3741,0.8472,84,64,20,0.7619,0.2381

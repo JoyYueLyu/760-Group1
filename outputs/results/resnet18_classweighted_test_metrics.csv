@@ -1,2 +1,0 @@
-model,loss,accuracy,macro_f1,weighted_f1,mae,qwk,total_errors,adjacent_errors,distant_errors,adjacent_error_rate_among_errors,distant_error_rate_among_errors
-resnet18_classweighted,Class-weighted CrossEntropyLoss,0.6836734693877551,0.6853694450753274,0.6919446929350891,0.4557823129251701,0.7920500484753141,93,60,33,0.6451612903225806,0.3548387096774194

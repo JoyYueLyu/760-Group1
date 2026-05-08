@@ -1,9 +1,0 @@
-Model,Accuracy,Macro F1,QWK,MAE,Total Errors,Distant Errors
-"DenseNet121
-Standard CE",0.7585,0.7466,0.872,0.3197,71,18
-"DenseNet121
-Class-weighted CE",0.7449,0.7396,0.8705,0.3299,75,18
-"DenseNet121
-Ordinal Loss",0.7449,0.7395,0.866,0.3333,75,19
-"Improved DenseNet121
-Ordinal Loss",0.7143,0.712,0.8472,0.3741,84,20

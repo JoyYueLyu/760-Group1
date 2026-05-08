@@ -1,2 +1,0 @@
-model,loss,optimizer,learning_rate,pretrained,fine_tune_last_block,alpha,best_val_loss,best_val_acc,epochs_trained,training_time_seconds
-resnet18_ordinal,Ordinal-aware weighted loss,Adam,0.0001,True,True,1.0,0.7533898650579256,0.7876712328767124,11,708.5037171840668

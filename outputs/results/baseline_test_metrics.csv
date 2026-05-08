@@ -1,2 +1,0 @@
-model,loss,accuracy,macro_f1,weighted_f1,mae,qwk,total_errors,adjacent_errors,distant_errors,adjacent_error_rate_among_errors,distant_error_rate_among_errors
-BaselineCNN,CrossEntropyLoss,0.45918367346938777,0.3733468905799003,0.4187621716227819,1.0204081632653061,0.5056712468473932,159,81,78,0.5094339622641509,0.49056603773584906

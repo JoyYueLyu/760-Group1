@@ -1,2 +1,0 @@
-model,loss,optimizer,learning_rate,pretrained,fine_tune_last_block,best_val_loss,best_val_acc,epochs_trained,training_time_seconds
-efficientnet_classweighted,Class-weighted CrossEntropyLoss,Adam,0.0001,True,True,0.8596847266861887,0.7272727272727273,20,2359.9126269817352
