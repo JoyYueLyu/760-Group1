@@ -1,0 +1,6 @@
+label,class_name,original_count,cleaned_count,removed_count
+0,0Normal,514,452,62
+1,1Doubtful,477,440,37
+2,2Mild,232,191,41
+3,3Moderate,221,175,46
+4,4Severe,206,206,0
