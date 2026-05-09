@@ -1,0 +1,2 @@
+experiment,total_samples,correct,adjacent_errors,distant_errors,max_error_distance,mae
+densenet121_weighted_ce,294,217,59,18,3,0.3435374149659864

@@ -1,0 +1,2 @@
+experiment,loss,accuracy,macro_f1,weighted_f1,mae,qwk,total_errors,adjacent_errors,distant_errors,total_error_rate,adjacent_error_rate,distant_error_rate
+densenet121_weighted_ce,0.7253841317835308,0.7380952380952381,0.7292536495147282,0.7436212955769319,0.3435374149659864,0.8467530449309427,77,59,18,0.2619047619047619,0.20068027210884354,0.061224489795918366
