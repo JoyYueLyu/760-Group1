@@ -1,0 +1,2 @@
+experiment,total_samples,correct,adjacent_errors,distant_errors,max_error_distance,mae
+densenet121_ordinal_loss,294,227,53,14,3,0.29591836734693877

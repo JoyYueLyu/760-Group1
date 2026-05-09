@@ -1,0 +1,6 @@
+,Pred_0Normal,Pred_1Doubtful,Pred_2Mild,Pred_3Moderate,Pred_4Severe
+True_0Normal,78,8,5,0,0
+True_1Doubtful,14,68,6,0,0
+True_2Mild,2,12,17,7,0
+True_3Moderate,1,1,0,32,1
+True_4Severe,0,5,0,5,32
