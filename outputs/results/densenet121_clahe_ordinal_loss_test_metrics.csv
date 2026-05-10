@@ -1,0 +1,2 @@
+experiment,loss,clahe_clip_limit,clahe_tile_grid_size,ordinal_alpha,accuracy,macro_f1,weighted_f1,mae,qwk,total_errors,adjacent_errors,distant_errors,total_error_rate,adjacent_error_rate,distant_error_rate
+densenet121_clahe_ordinal_loss,0.932299884403644,2.0,"(8, 8)",0.2,0.7551020408163265,0.7345965640432632,0.7477917823141892,0.3401360544217687,0.8383667418228989,72,55,17,0.24489795918367346,0.1870748299319728,0.05782312925170068
