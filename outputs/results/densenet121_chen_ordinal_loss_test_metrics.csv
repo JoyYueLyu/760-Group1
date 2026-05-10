@@ -1,0 +1,2 @@
+experiment,loss,penalty_distance,square_loss,normalize_matrix,accuracy,macro_f1,weighted_f1,mae,qwk,total_errors,adjacent_errors,distant_errors,total_error_rate,adjacent_error_rate,distant_error_rate
+densenet121_chen_ordinal_loss,3.0965483788730337,2,True,False,0.7755102040816326,0.7472337948041903,0.7703784204740396,0.30612244897959184,0.8639725802229379,66,49,17,0.22448979591836735,0.16666666666666666,0.05782312925170068
