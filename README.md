@@ -79,7 +79,6 @@ Instead of using only the full X-ray image, the final model uses a 4-crop input 
 * center joint region;
 * left joint region;
 * right joint region.
-![37f255fbc494f2823164e9117372378.png](..%2F..%2F..%2FDocuments%2FWeChat%20Files%2Fwxid_y1lwa02xgvcy22%2FFileStorage%2FTemp%2F37f255fbc494f2823164e9117372378.png)
 This helps the model focus on clinically relevant regions such as joint-space narrowing and osteophytes.
 
 ### 4. Full Fine-tuning
