@@ -224,3 +224,128 @@ ordinal-aware DenseNet121
 ```angular2html
 python -m src.interpretability.generate_gradcam_densenet121 --variant ordinal --samples-per-class 1
 ```
+
+
+## Final Model: How to Run on Kaggle
+
+The final model notebook is provided in:
+
+```text
+final_model/final_model.ipynb
+```
+
+This notebook was designed to run on Kaggle. Before running the notebook, the pre-split dataset must be uploaded to Kaggle as a dataset.
+
+### 1. Prepare the Dataset
+
+The dataset should already be split into three folders:
+
+```text
+split_data/
+├── train/
+├── val/
+└── test/
+```
+
+Each folder should contain the five KL grade classes:
+
+```text
+0Normal/
+1Doubtful/
+2Mild/
+3Moderate/
+4Severe/
+```
+
+The expected dataset structure is:
+
+```text
+split_data/
+├── train/
+│   ├── 0Normal/
+│   ├── 1Doubtful/
+│   ├── 2Mild/
+│   ├── 3Moderate/
+│   └── 4Severe/
+├── val/
+│   ├── 0Normal/
+│   ├── 1Doubtful/
+│   ├── 2Mild/
+│   ├── 3Moderate/
+│   └── 4Severe/
+└── test/
+    ├── 0Normal/
+    ├── 1Doubtful/
+    ├── 2Mild/
+    ├── 3Moderate/
+    └── 4Severe/
+```
+
+### 2. Upload the Dataset to Kaggle
+
+In Kaggle:
+
+1. Open the notebook.
+2. Click **Add Input**.
+3. Upload or select the pre-split dataset.
+4. Make sure the dataset appears in the Kaggle input panel.
+5. The dataset should show `train`, `val`, and `test` folders.
+
+### 3. Set the Dataset Path
+
+In the notebook, update the dataset root path if needed:
+
+```python
+from pathlib import Path
+import os
+
+print("Available Kaggle input folders:")
+print(os.listdir("/kaggle/input"))
+
+DATA_ROOT = Path("/kaggle/input/split-data")
+
+if not DATA_ROOT.exists():
+    DATA_ROOT = Path("/kaggle/input/split_data")
+
+TRAIN_DIR = DATA_ROOT / "train"
+VAL_DIR = DATA_ROOT / "val"
+TEST_DIR = DATA_ROOT / "test"
+
+print("DATA_ROOT:", DATA_ROOT)
+print("Train:", TRAIN_DIR)
+print("Validation:", VAL_DIR)
+print("Test:", TEST_DIR)
+
+assert TRAIN_DIR.exists(), f"Train folder not found: {TRAIN_DIR}"
+assert VAL_DIR.exists(), f"Validation folder not found: {VAL_DIR}"
+assert TEST_DIR.exists(), f"Test folder not found: {TEST_DIR}"
+```
+
+If the dataset folder name is different, change this line:
+
+```python
+DATA_ROOT = Path("/kaggle/input/split-data")
+```
+
+For example:
+
+```python
+DATA_ROOT = Path("/kaggle/input/your-dataset-name")
+```
+
+### 4. Run the Notebook
+
+After the dataset is attached and the path is correct, run all cells from top to bottom.
+
+The notebook will train and evaluate the final DenseNet121-based model. It reports the main test metrics, including:
+
+* Accuracy
+* Macro F1
+* Weighted F1
+* MAE
+* QWK
+* Confusion matrix
+* Per-class metrics
+* Grad-CAM visualisation
+
+
