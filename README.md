@@ -1,351 +1,155 @@
-## How to Run This Project
+# CNN-based Classification of Knee Osteoarthritis Severity from X-ray Images
 
-### 1. Clone the repository
+## Project Overview
 
-```bash
-git clone https://github.com/JoyYueLyu/760-Group1.git
-cd 760-Group1
-```
+This project aims to classify knee osteoarthritis severity from X-ray images into five Kellgren-Lawrence (KL) grades, from grade 0 to grade 4.
 
-### 2. Create virtual environment
-Windows:
-```angular2html
-python -m venv .venv
-.venv\Scripts\activate
-```
-macOS / Linux:
-```angular2html
-python3 -m venv .venv
-source .venv/bin/activate
-```
+The goal is not only to improve classification accuracy, but also to reduce clinically serious grading mistakes. Since KL grades are ordinal labels, predicting grade 0 as grade 1 is a smaller mistake than predicting grade 0 as grade 4. Therefore, this project focuses on both classification performance and ordinal consistency.
 
-### 3.Install dependencies
-```angular2html
-pip install -r requirements.txt
-```
-### 4 Download the dataset
-https://data.mendeley.com/datasets/t9ndx37v5h/1  
-Please download the Digital Knee X-ray Images dataset and place the MedicalExpert-I folder in the following structure:
-```angular2html
-760-Group1/
-├── data/
-│   └── raw/
-│       └── Digital Knee X-ray Images/
-│           └── MedicalExpert-I/
-│               ├── 0Normal/
-│               ├── 1Doubtful/
-│               ├── 2Mild/
-│               ├── 3Moderate/
-│               └── 4Severe/
-```
-### 5.Check and clean dataset
-```angular2html
-python src/check_dataset.py
-```
-find double knee:  
-python src/find_double_knee_candidates.py  
-This generates:  
-outputs/results/double_knee_candidates.csv  
-outputs/figures/double_knee_candidates_page_1.png  
+## Problem and Challenges
 
-Open the generated candidate images and manually check whether they contain both knees.  
-In outputs/results/double_knee_candidates.csv, mark the images to remove by writing yes in the remove column.  
+The task is to predict the KL grade of each knee X-ray image.
 
-Then move the confirmed double-knee images out of the training dataset:  
-```angular2html
-python src/remove_double_knee_images.py
-python src/check_dataset.py
-```
+| KL Grade | Meaning  |
+| -------- | -------- |
+| 0        | Normal   |
+| 1        | Doubtful |
+| 2        | Mild     |
+| 3        | Moderate |
+| 4        | Severe   |
 
-### 6. Create train / validation / test split
-```angular2html
-python src/create_split.py
+This task is challenging because:
 
-This creates:
-data/processed/splits.csv
-```
+* neighbouring KL grades can look visually similar;
+* early-stage osteoarthritis can be difficult to distinguish;
+* the dataset is imbalanced across classes;
+* KL grades have a natural ordinal structure;
+* distant grading errors are clinically more serious than adjacent errors.
 
-### 7.Check DataLoader
-```angular2html
-python src/dataset.py
-```
+Because of this, accuracy alone is not enough. We also consider ordinal-aware metrics such as MAE, QWK, and distant error analysis.
 
-### 8. Visualize data augmentation
-```angular2html
-python src/visualize_augmentation.py
+## Dataset and Preprocessing
 
-outputs/figures/augmentation_examples.png
-```
+The project uses knee X-ray images labelled with KL grades 0 to 4.
 
-### 9.Train baseline CNN
-```angular2html
-python src/train_baseline.py
+Before training, the dataset was cleaned to remove inconsistent images such as double-knee images. This helps keep the input format consistent because the model focuses on one knee region at a time.
 
-This generates:
-outputs/models/baseline_cnn_best.pth
-outputs/results/baseline_training_history.csv
-outputs/results/baseline_training_summary.csv
-outputs/figures/baseline_loss_curve.png
-outputs/figures/baseline_accuracy_curve.png
-```
+The preprocessing pipeline includes:
 
-### 10.Evaluate baseline CNN
-```angular2html
-python src/evaluate.py
+* converting grayscale X-ray images into 3-channel images;
+* resizing images for model input;
+* normalizing images using ImageNet mean and standard deviation;
+* applying data augmentation only to the training set;
+* keeping validation and test data unchanged for fair evaluation.
 
-generates
-outputs/results/baseline_test_metrics.csv
-outputs/results/baseline_per_class_metrics.csv
-outputs/results/baseline_test_predictions.csv
-outputs/results/baseline_confusion_matrix.csv
-outputs/figures/baseline_confusion_matrix.png
-```
+## Methodology
 
-### View notebook analysis
-```angular2html
-notebooks/01_project_progress_baseline_analysis.ipynb
-```
+The final model is based on DenseNet121 pretrained on ImageNet. DenseNet121 was selected as the main backbone because it provides strong feature reuse and stable gradient flow.
 
-### 11. Train ResNet18 transfer learning model
-```angular2html
-python src/transfer_models/train_resnet18.py
+The final pipeline includes:
 
-This generates:
+1. image preprocessing;
+2. 4-crop input generation;
+3. DenseNet121 feature extraction;
+4. class-weighted hybrid distance-aware ordinal loss;
+5. full fine-tuning;
+6. validation and test evaluation.
 
-outputs/models/resnet18_best.pth
-outputs/results/resnet18_training_history.csv
-outputs/results/resnet18_training_summary.csv
-outputs/figures/resnet18_loss_curve.png
-outputs/figures/resnet18_accuracy_curve.png
-```
+## Main Improvements
 
-### 12.Evaluate ResNet18 transfer learning model
-```angular2html
-python src/transfer_models/evaluate_resnet18.py
+### 1. Ordinal-aware Loss
 
-This generates:
-outputs/results/resnet18_test_metrics.csv
-outputs/results/resnet18_per_class_metrics.csv
-outputs/results/resnet18_test_predictions.csv
-outputs/results/resnet18_confusion_matrix.csv
-outputs/figures/resnet18_confusion_matrix.png
-```
-### notebook
-```angular2html
-notebooks/02_resnet18_transfer_learning_analysis.ipynb
-```
-###  13. Train ResNet18 with class-weighted loss
-```angular2html
-python src/transfer_models/train_resnet18_classweighted.py
-```
-### 14. Evaluate ResNet18 with class-weighted loss
-```angular2html
-python src/transfer_models/evaluate_resnet18_classweighted.py
-```
-### 15. Train ResNet18 with ordinal-aware weighted loss
-```angular2html
-python src/transfer_models/train_resnet18_ordinal.py
-```
-### 16. Evaluate ResNet18 with ordinal-aware weighted loss
-```angular2html
-python src/transfer_models/evaluate_resnet18_ordinal.py
-```
-### 17.grad-CAM
-ResNet18  
-```angular2html
-python src/interpretability/generate_gradcam_resnet18.py --variant standard --samples-per-class 1
-```
-class-weighted ResNet18  
-```angular2html
-python src/interpretability/generate_gradcam_resnet18.py --variant classweighted --samples-per-class 1
+Standard Cross Entropy treats all classification errors equally. However, KL grades are ordered from 0 to 4, so distant mistakes should be penalized more strongly.
 
-```
-ordinal-aware ResNet18  
-```angular2html
-python src/interpretability/generate_gradcam_resnet18.py --variant ordinal --samples-per-class 1
-```
+To address this, we used a hybrid distance-aware ordinal loss. This combines standard classification learning with an additional ordinal penalty, helping the model produce more ordinally consistent predictions.
 
-### 18. Train DenseNet121 transfer learning model
-```angular2html
-python -m src.transfer_models_DenseNet.train_densenet121
+### 2. Class Imbalance Handling
 
-This generates:
+The dataset has an imbalanced class distribution. Some KL grades have more training samples than others, which can bias the model toward majority classes.
 
-outputs/models/densenet121_best.pth
-outputs/results/densenet121_training_history.csv
-outputs/results/densenet121_training_summary.csv
-outputs/figures/densenet121_loss_curve.png
-outputs/figures/densenet121_accuracy_curve.png
-```
+To reduce this issue, we tested class imbalance handling methods and selected class-weighted learning for the final model. This gives more importance to minority classes during training.
 
-### 19. Evaluate DenseNet121 transfer learning model
-```angular2html
-python -m src.transfer_models_DenseNet.evaluate_densenet121
+### 3. 4-Crop Input Strategy
 
-This generates:
+Grad-CAM analysis showed that important osteoarthritis-related features are mainly located around the knee joint region.
 
-outputs/results/densenet121_test_metrics.csv
-outputs/results/densenet121_per_class_metrics.csv
-outputs/results/densenet121_test_predictions.csv
-outputs/results/densenet121_confusion_matrix.csv
-outputs/figures/densenet121_confusion_matrix.png
-```
+Instead of using only the full X-ray image, the final model uses a 4-crop input strategy:
 
-### 20. Train DenseNet121 with class-weighted loss
-```angular2html
-python -m src.transfer_models_DenseNet.train_densenet121_classweighted
-```
+* full image;
+* center joint region;
+* left joint region;
+* right joint region.
+![37f255fbc494f2823164e9117372378.png](..%2F..%2F..%2FDocuments%2FWeChat%20Files%2Fwxid_y1lwa02xgvcy22%2FFileStorage%2FTemp%2F37f255fbc494f2823164e9117372378.png)
+This helps the model focus on clinically relevant regions such as joint-space narrowing and osteophytes.
 
-### 21. Evaluate DenseNet121 with class-weighted loss
-```angular2html
-python -m src.transfer_models_DenseNet.evaluate_densenet121_classweighted
-```
+### 4. Full Fine-tuning
 
-### 22. Train DenseNet121 with ordinal-aware weighted loss
-```angular2html
-python -m src.transfer_models_DenseNet.train_densenet121_ordinal
-```
+DenseNet121 was pretrained on ImageNet, but knee X-ray images are very different from natural images. Therefore, we compared different fine-tuning strategies and used full fine-tuning for the final model.
 
-### 23. Evaluate DenseNet121 with ordinal-aware weighted loss
-```angular2html
-python -m src.transfer_models_DenseNet.evaluate_densenet121_ordinal
-```
+Full fine-tuning allows the whole network to adapt better to X-ray image features.
 
-### 24. grad-CAM
-DenseNet121
-```angular2html
-python -m src.interpretability.generate_gradcam_densenet121 --variant standard --samples-per-class 1
-```
-class-weighted DenseNet121
-```angular2html
-python -m src.interpretability.generate_gradcam_densenet121 --variant classweighted --samples-per-class 1
-```
-ordinal-aware DenseNet121 
-```angular2html
-python -m src.interpretability.generate_gradcam_densenet121 --variant ordinal --samples-per-class 1
-```
+## Final Model
 
+The final model combines:
 
-## Final Model: How to Run on Kaggle
+* DenseNet121 backbone;
+* 4-crop input strategy;
+* class-weighted hybrid distance-aware ordinal loss;
+* full fine-tuning;
+* QWK-based model selection.
 
-The final model notebook is provided in:
+The final Kaggle notebook is available in:
 
 ```text
 final_model/final_model.ipynb
 ```
 
-This notebook was designed to run on Kaggle. Before running the notebook, the pre-split dataset must be uploaded to Kaggle as a dataset.
+## Evaluation
 
-### 1. Prepare the Dataset
+The model is evaluated using multiple metrics:
 
-The dataset should already be split into three folders:
+| Metric         | Purpose                                                        |
+| -------------- | -------------------------------------------------------------- |
+| Accuracy       | Measures overall classification correctness                    |
+| Macro F1       | Measures balanced performance across all classes               |
+| MAE            | Measures prediction distance between true and predicted grades |
+| QWK            | Measures ordinal agreement                                     |
+| Distant Errors | Counts clinically serious large-grade mistakes                 |
 
-```text
-split_data/
-├── train/
-├── val/
-└── test/
-```
+The detailed experimental outputs and current metric values are shown in the final model notebook.
 
-Each folder should contain the five KL grade classes:
-
-```text
-0Normal/
-1Doubtful/
-2Mild/
-3Moderate/
-4Severe/
-```
-
-The expected dataset structure is:
+## Repository Structure
 
 ```text
-split_data/
-├── train/
-│   ├── 0Normal/
-│   ├── 1Doubtful/
-│   ├── 2Mild/
-│   ├── 3Moderate/
-│   └── 4Severe/
-├── val/
-│   ├── 0Normal/
-│   ├── 1Doubtful/
-│   ├── 2Mild/
-│   ├── 3Moderate/
-│   └── 4Severe/
-└── test/
-    ├── 0Normal/
-    ├── 1Doubtful/
-    ├── 2Mild/
-    ├── 3Moderate/
-    └── 4Severe/
+760-Group1/
+├── README.md
+├── howtorun.md
+├── final_model/
+│   └── final_model.ipynb
+└── ...
 ```
 
-### 2. Upload the Dataset to Kaggle
+## How to Run
 
-In Kaggle:
+The detailed running instructions are provided in:
 
-1. Open the notebook.
-2. Click **Add Input**.
-3. Upload or select the pre-split dataset.
-4. Make sure the dataset appears in the Kaggle input panel.
-5. The dataset should show `train`, `val`, and `test` folders.
-
-### 3. Set the Dataset Path
-
-In the notebook, update the dataset root path if needed:
-
-```python
-from pathlib import Path
-import os
-
-print("Available Kaggle input folders:")
-print(os.listdir("/kaggle/input"))
-
-DATA_ROOT = Path("/kaggle/input/split-data")
-
-if not DATA_ROOT.exists():
-    DATA_ROOT = Path("/kaggle/input/split_data")
-
-TRAIN_DIR = DATA_ROOT / "train"
-VAL_DIR = DATA_ROOT / "val"
-TEST_DIR = DATA_ROOT / "test"
-
-print("DATA_ROOT:", DATA_ROOT)
-print("Train:", TRAIN_DIR)
-print("Validation:", VAL_DIR)
-print("Test:", TEST_DIR)
-
-assert TRAIN_DIR.exists(), f"Train folder not found: {TRAIN_DIR}"
-assert VAL_DIR.exists(), f"Validation folder not found: {VAL_DIR}"
-assert TEST_DIR.exists(), f"Test folder not found: {TEST_DIR}"
+```text
+howtorun.md
 ```
 
-If the dataset folder name is different, change this line:
+That file explains how to prepare the environment, attach the dataset in Kaggle, set the dataset path, and run the final model notebook.
 
-```python
-DATA_ROOT = Path("/kaggle/input/split-data")
-```
+## Conclusion
 
-For example:
+This project shows that knee osteoarthritis severity classification should not rely only on accuracy. Since KL grades are ordinal, reducing distant errors and improving ordinal consistency are also important.
 
-```python
-DATA_ROOT = Path("/kaggle/input/your-dataset-name")
-```
+The final approach combines ordinal-aware learning, class imbalance handling, region-focused input, and full fine-tuning to make the model more suitable for KL-grade classification.
 
-### 4. Run the Notebook
+## Future Work
 
-After the dataset is attached and the path is correct, run all cells from top to bottom.
+Future improvements could include:
 
-The notebook will train and evaluate the final DenseNet121-based model. It reports the main test metrics, including:
-
-* Accuracy
-* Macro F1
-* Weighted F1
-* MAE
-* QWK
-* Confusion matrix
-* Per-class metrics
-* Grad-CAM visualisation
-
-
+* testing on larger and more diverse datasets;
+* exploring ensemble methods;
+* improving adjacent-grade classification;
+* validating the model on external clinical data.
